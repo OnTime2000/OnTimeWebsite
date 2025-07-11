@@ -41,6 +41,8 @@ const ShopContextProvider = (props) => {
         }
         setCartItems(cartData);
 
+        toast.success('Added to cart');
+
         if (token) {
             try {
 
@@ -48,7 +50,7 @@ const ShopContextProvider = (props) => {
 
             } catch (error) {
                 console.log(error)
-                toast.error(error.message)
+                
             }
         }
 
@@ -133,7 +135,10 @@ const ShopContextProvider = (props) => {
             }
         } catch (error) {
             console.log(error)
-            toast.error(error.message)
+            // Suppress toast error for 404 to avoid confusing user when cart is empty or not found
+            if (error.response && error.response.status !== 404) {
+                toast.error(error.message)
+            }
         }
     }
 
@@ -157,7 +162,11 @@ const ShopContextProvider = (props) => {
         cartItems, addToCart,setCartItems,
         getCartCount, updateQuantity,
         getCartAmount, navigate, backendUrl,
-        setToken, token
+        setToken, token,
+        customization: cartItems.customization || {}, // expose customization data in context
+        setCustomization: (customization) => {
+            setCartItems(prev => ({ ...prev, customization }));
+        }
     }
 
     return (

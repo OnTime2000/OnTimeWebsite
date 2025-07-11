@@ -16,7 +16,7 @@ const Add = ({ token }) => {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [bestseller, setBestseller] = useState(false);
-  const [sizes, setSizes] = useState([]);
+  const [sizes, setSizes] = useState(["customised"]);
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -123,12 +123,8 @@ const Add = ({ token }) => {
       <div>
         <p className='mb-2'>Product Sizes</p>
         <div className='flex gap-3'>
-          <div onClick={() => setSizes(prev => prev.includes("Regular") ? prev.filter(item => item !== "Regular") : [...prev, "Regular"])}>
-            <p className={`${sizes.includes("Regular") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>Regular</p>
-          </div>
-
-          <div onClick={() => setSizes(prev => prev.includes("Custom") ? prev.filter(item => item !== "Custom") : [...prev, "Custom"])}>
-            <p className={`${sizes.includes("Custom") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>Custom</p>
+          <div onClick={() => setSizes(prev => prev.includes("customised") ? prev.filter(item => item !== "customised") : [...prev, "customised"])}>
+            <p className={`${sizes.includes("customised") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>Customised</p>
           </div>
 
           {/* <div onClick={() => setSizes(prev => prev.includes("L") ? prev.filter(item => item !== "L") : [...prev, "L"])}>

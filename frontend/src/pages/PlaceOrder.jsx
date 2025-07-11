@@ -78,8 +78,13 @@ const PlaceOrder = () => {
             let orderData = {
                 address: formData,
                 items: orderItems,
-                amount: getCartAmount() + delivery_fee
+                amount: getCartAmount() + delivery_fee,
+            customization: cartItems.customization ? {
+                description: cartItems.customization.description,
+                images: cartItems.customization.images
+            } : {}
             }
+            
             
 
             switch (method) {

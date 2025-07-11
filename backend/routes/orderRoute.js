@@ -1,12 +1,14 @@
 import express from 'express'
-import {placeOrder, allOrders, userOrders, updateStatus,  updatePaymentStatus} from '../controllers/orderController.js'
+import {placeOrder, userOrders, updateStatus,  updatePaymentStatus} from '../controllers/orderController.js'
 import adminAuth  from '../middleware/adminAuth.js'
 import authUser from '../middleware/auth.js'
 
 const orderRouter = express.Router()
 
 // Admin Features
-orderRouter.post('/list',adminAuth,allOrders)
+import { listOrders } from '../controllers/orderController.js'
+
+orderRouter.post('/list',adminAuth, listOrders)
 orderRouter.post('/status',adminAuth,updateStatus)
 orderRouter.post('/payment-status',adminAuth, updatePaymentStatus)
 // Payment Features
