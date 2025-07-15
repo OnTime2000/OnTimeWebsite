@@ -35,20 +35,21 @@ const Customisations = () => {
       const productId = window.location.pathname.split('/').pop()
       formData.append('productId', productId)
 
-      const response = await axios.post('http://localhost:4000/api/customization/add', formData, {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000'
+      const response = await axios.post(`${backendUrl}/api/customization/add`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       })
 
       if (response.data.success) {
-        // Update customization data in ShopContext
+        // ✅ Use real image URLs returned from backend
         setCustomization({
           description,
-          images: images.filter(img => img !== null).map(img => URL.createObjectURL(img))
+          images: response.data.customization.images
         })
 
-        // Show a 1 second popup message instead of alert
+        // ✅ Nice toast-style popup
         const popup = document.createElement('div')
         popup.textContent = 'Customizations saved'
         popup.style.position = 'fixed'
