@@ -16,7 +16,7 @@ import PrivateRoute from './components/PrivateRoute'
 import { ShopContext } from './context/ShopContext'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import Customisations from './pages/Customisations'
+import Customizations from './pages/Customizations'
 
 
 const App = () => {
