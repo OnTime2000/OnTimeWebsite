@@ -43,13 +43,13 @@ const Customisations = () => {
       })
 
       if (response.data.success) {
-        // ✅ Use real image URLs returned from backend
+        // Update customization data in ShopContext
         setCustomization({
           description,
-          images: response.data.customization.images
+          images: images.filter(img => img !== null).map(img => URL.createObjectURL(img))
         })
 
-        // ✅ Nice toast-style popup
+        // Show a 1 second popup message instead of alert
         const popup = document.createElement('div')
         popup.textContent = 'Customizations saved'
         popup.style.position = 'fixed'
