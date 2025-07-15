@@ -42,31 +42,31 @@ const Customisations = () => {
         }
       })
 
-      if (response.data.success) {
-        // Update customization data in ShopContext
-        setCustomization({
-          description,
-          images: images.filter(img => img !== null).map(img => URL.createObjectURL(img))
-        })
+        if (response.data.success) {
+          // Update customization data in ShopContext with URLs from backend
+          setCustomization({
+            description,
+            images: response.data.customization.images
+          })
 
-        // Show a 1 second popup message instead of alert
-        const popup = document.createElement('div')
-        popup.textContent = 'Customizations saved'
-        popup.style.position = 'fixed'
-        popup.style.top = '20px'
-        popup.style.right = '20px'
-        popup.style.backgroundColor = 'rgba(0,0,0,0.7)'
-        popup.style.color = 'white'
-        popup.style.padding = '10px 20px'
-        popup.style.borderRadius = '5px'
-        popup.style.zIndex = '1000'
-        document.body.appendChild(popup)
-        setTimeout(() => {
-          document.body.removeChild(popup)
-        }, 2000)
-      } else {
-        alert('Failed to submit customization: ' + response.data.message)
-      }
+          // Show a 1 second popup message instead of alert
+          const popup = document.createElement('div')
+          popup.textContent = 'Customizations saved'
+          popup.style.position = 'fixed'
+          popup.style.top = '20px'
+          popup.style.right = '20px'
+          popup.style.backgroundColor = 'rgba(0,0,0,0.7)'
+          popup.style.color = 'white'
+          popup.style.padding = '10px 20px'
+          popup.style.borderRadius = '5px'
+          popup.style.zIndex = '1000'
+          document.body.appendChild(popup)
+          setTimeout(() => {
+            document.body.removeChild(popup)
+          }, 2000)
+        } else {
+          alert('Failed to submit customization: ' + response.data.message)
+        }
     } catch (error) {
       alert('Error submitting customization: ' + error.message)
     }
