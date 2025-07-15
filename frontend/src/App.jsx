@@ -76,7 +76,7 @@ const App = () => {
           path='/customize/:productId'
           element={
             <PrivateRoute>
-              <Customisations />
+              <Customizations />
             </PrivateRoute>
           }
         />
