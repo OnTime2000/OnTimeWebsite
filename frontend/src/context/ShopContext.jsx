@@ -50,7 +50,8 @@ const ShopContextProvider = (props) => {
 
             } catch (error) {
                 console.log(error)
-                
+                const errorMsg = error.response?.data?.message || error.message || 'Failed to add to cart';
+                toast.error(`Add to Cart Error: ${errorMsg}`);
             }
         }
 
@@ -87,7 +88,8 @@ const ShopContextProvider = (props) => {
 
             } catch (error) {
                 console.log(error)
-                toast.error(error.message)
+                const errorMsg = error.response?.data?.message || error.message || 'Failed to update quantity';
+                toast.error(`Update Quantity Error: ${errorMsg}`);
             }
         }
 
@@ -122,7 +124,8 @@ const ShopContextProvider = (props) => {
 
         } catch (error) {
             console.log(error)
-            toast.error(error.message)
+            const errorMsg = error.response?.data?.message || error.message || 'Failed to fetch products';
+            toast.error(`Get Products Error: ${errorMsg}`);
         }
     }
 
@@ -137,7 +140,8 @@ const ShopContextProvider = (props) => {
             console.log(error)
             // Suppress toast error for 404 to avoid confusing user when cart is empty or not found
             if (error.response && error.response.status !== 404) {
-                toast.error(error.message)
+                const errorMsg = error.response?.data?.message || error.message || 'Failed to get user cart';
+                toast.error(`Get User Cart Error: ${errorMsg}`);
             }
         }
     }
