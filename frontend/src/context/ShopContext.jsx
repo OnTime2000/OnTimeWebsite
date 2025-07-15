@@ -49,8 +49,11 @@ const ShopContextProvider = (props) => {
 
             } catch (error) {
                 console.log(error)
+                // Suppress toast error for "User not found" to avoid duplicate toast
                 const errorMsg = error.response?.data?.message || error.message || 'Failed to add to cart';
-                toast.error(`Add to Cart Error: ${errorMsg}`);
+                if (errorMsg !== 'User not found') {
+                    toast.error(`Add to Cart Error: ${errorMsg}`);
+                }
             }
         }
 
@@ -88,7 +91,9 @@ const ShopContextProvider = (props) => {
             } catch (error) {
                 console.log(error)
                 const errorMsg = error.response?.data?.message || error.message || 'Failed to update quantity';
-                toast.error(`Update Quantity Error: ${errorMsg}`);
+                if (errorMsg !== 'User not found') {
+                    toast.error(`Update Quantity Error: ${errorMsg}`);
+                }
             }
         }
 
