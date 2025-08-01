@@ -10,6 +10,10 @@ const Add = ({ token }) => {
   const [image2, setImage2] = useState(false)
   const [image3, setImage3] = useState(false)
   const [image4, setImage4] = useState(false)
+  const [image5, setImage5] = useState(false)
+  const [image6, setImage6] = useState(false)
+  const [image7, setImage7] = useState(false)
+  const [image8, setImage8] = useState(false)
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -36,6 +40,10 @@ const Add = ({ token }) => {
       image2 && formData.append("image2", image2)
       image3 && formData.append("image3", image3)
       image4 && formData.append("image4", image4)
+      image5 && formData.append("image5", image5)
+      image6 && formData.append("image6", image6)
+      image7 && formData.append("image7", image7)
+      image8 && formData.append("image8", image8)
 
       const response = await axios.post(backendUrl + "/api/product/add", formData, { headers: { token } })
 
@@ -47,6 +55,10 @@ const Add = ({ token }) => {
         setImage2(false)
         setImage3(false)
         setImage4(false)
+        setImage5(false)
+        setImage6(false)
+        setImage7(false)
+        setImage8(false)
         setPrice('')
       } else {
         toast.error(response.data.message)
@@ -61,24 +73,243 @@ const Add = ({ token }) => {
   return (
     <form onSubmit={onSubmitHandler} className='flex flex-col w-full items-start gap-3'>
       <div>
-        <p className='mb-2'>Upload Image</p>
+        <p className='mb-2'>Upload Image or Video</p>
 
         <div className='flex gap-2'>
           <label htmlFor="image1">
-            <img className='w-20' src={!image1 ? assets.upload_area : URL.createObjectURL(image1)} alt="" />
-            <input onChange={(e) => setImage1(e.target.files[0])} type="file" id="image1" hidden />
+            {image1 && image1.type.startsWith('video') ? (
+              <video className='w-20' src={URL.createObjectURL(image1)} controls />
+            ) : (
+              <img className='w-20' src={!image1 ? assets.upload_area : URL.createObjectURL(image1)} alt="" />
+            )}
+            <input
+              onChange={(e) => {
+                const file = e.target.files[0];
+                if (file) {
+                  const isImage = file.type.startsWith('image/');
+                  const isVideo = file.type.startsWith('video/');
+                  const maxSize = 22 * 1024 * 1024; // 20 MB
+
+                  if (!isImage && !isVideo) {
+                    toast.error('Only images and videos are allowed');
+                    return;
+                  }
+                  if (file.size > maxSize) {
+                    toast.error('File size must be less than or equal to 20 MB');
+                    return;
+                  }
+                  setImage1(file);
+                }
+
+              }}
+              type="file"
+              id="image1"
+              hidden
+              accept="image/*,video/*"
+            />
           </label>
           <label htmlFor="image2">
-            <img className='w-20' src={!image2 ? assets.upload_area : URL.createObjectURL(image2)} alt="" />
-            <input onChange={(e) => setImage2(e.target.files[0])} type="file" id="image2" hidden />
+            {image2 && image2.type.startsWith('video') ? (
+              <video className='w-20' src={URL.createObjectURL(image2)} controls />
+            ) : (
+              <img className='w-20' src={!image2 ? assets.upload_area : URL.createObjectURL(image2)} alt="" />
+            )}
+            <input
+              onChange={(e) => {
+                const file = e.target.files[0];
+                if (file) {
+                  const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'video/mp4', 'video/webm', 'video/ogg', 'video/quicktime'];
+                  const maxSize = 22 * 1024 * 1024; // 20 MB
+                  if (!validTypes.includes(file.type)) {
+                    toast.error('Only images and videos are allowed');
+                    return;
+                  }
+                  if (file.size > maxSize) {
+                    toast.error('File size must be less than or equal to 20 MB');
+                    return;
+                  }
+                  setImage2(file);
+                }
+              }}
+              type="file"
+              id="image2"
+              hidden
+              accept="image/*,video/*"
+            />
           </label>
           <label htmlFor="image3">
-            <img className='w-20' src={!image3 ? assets.upload_area : URL.createObjectURL(image3)} alt="" />
-            <input onChange={(e) => setImage3(e.target.files[0])} type="file" id="image3" hidden />
+            {image3 && image3.type.startsWith('video') ? (
+              <video className='w-20' src={URL.createObjectURL(image3)} controls />
+            ) : (
+              <img className='w-20' src={!image3 ? assets.upload_area : URL.createObjectURL(image3)} alt="" />
+            )}
+            <input
+              onChange={(e) => {
+                const file = e.target.files[0];
+                if (file) {
+                  const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'video/mp4', 'video/webm', 'video/ogg', 'video/quicktime'];
+                  const maxSize = 22 * 1024 * 1024; // 20 MB
+                  if (!validTypes.includes(file.type)) {
+                    toast.error('Only images and videos are allowed');
+                    return;
+                  }
+                  if (file.size > maxSize) {
+                    toast.error('File size must be less than or equal to 20 MB');
+                    return;
+                  }
+                  setImage3(file);
+                }
+              }}
+              type="file"
+              id="image3"
+              hidden
+              accept="image/*,video/*"
+            />
           </label>
           <label htmlFor="image4">
-            <img className='w-20' src={!image4 ? assets.upload_area : URL.createObjectURL(image4)} alt="" />
-            <input onChange={(e) => setImage4(e.target.files[0])} type="file" id="image4" hidden />
+            {image4 && image4.type.startsWith('video') ? (
+              <video className='w-20' src={URL.createObjectURL(image4)} controls />
+            ) : (
+              <img className='w-20' src={!image4 ? assets.upload_area : URL.createObjectURL(image4)} alt="" />
+            )}
+            <input
+              onChange={(e) => {
+                const file = e.target.files[0];
+                if (file) {
+                  const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'video/mp4', 'video/webm', 'video/ogg', 'video/quicktime'];
+                  const maxSize = 22 * 1024 * 1024; // 20 MB
+                  if (!validTypes.includes(file.type)) {
+                    toast.error('Only images and videos are allowed');
+                    return;
+                  }
+                  if (file.size > maxSize) {
+                    toast.error('File size must be less than or equal to 20 MB');
+                    return;
+                  }
+                  setImage4(file);
+                }
+              }}
+              type="file"
+              id="image4"
+              hidden
+              accept="image/*,video/*"
+            />
+          </label>
+          <label htmlFor="image5">
+            {image5 && image5.type.startsWith('video') ? (
+              <video className='w-20' src={URL.createObjectURL(image5)} controls />
+            ) : (
+              <img className='w-20' src={!image5 ? assets.upload_area : URL.createObjectURL(image5)} alt="" />
+            )}
+            <input
+              onChange={(e) => {
+                const file = e.target.files[0];
+                if (file) {
+                  const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'video/mp4', 'video/webm', 'video/ogg', 'video/quicktime'];
+                  const maxSize = 22 * 1024 * 1024; // 20 MB
+                  if (!validTypes.includes(file.type)) {
+                    toast.error('Only images and videos are allowed');
+                    return;
+                  }
+                  if (file.size > maxSize) {
+                    toast.error('File size must be less than or equal to 20 MB');
+                    return;
+                  }
+                  setImage5(file);
+                }
+              }}
+              type="file"
+              id="image5"
+              hidden
+              accept="image/*,video/*"
+            />
+          </label>
+          <label htmlFor="image6">
+            {image6 && image6.type.startsWith('video') ? (
+              <video className='w-20' src={URL.createObjectURL(image6)} controls />
+            ) : (
+              <img className='w-20' src={!image6 ? assets.upload_area : URL.createObjectURL(image6)} alt="" />
+            )}
+            <input
+              onChange={(e) => {
+                const file = e.target.files[0];
+                if (file) {
+                  const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'video/mp4', 'video/webm', 'video/ogg', 'video/quicktime'];
+                  const maxSize = 22 * 1024 * 1024; // 20 MB
+                  if (!validTypes.includes(file.type)) {
+                    toast.error('Only images and videos are allowed');
+                    return;
+                  }
+                  if (file.size > maxSize) {
+                    toast.error('File size must be less than or equal to 20 MB');
+                    return;
+                  }
+                  setImage6(file);
+                }
+              }}
+              type="file"
+              id="image6"
+              hidden
+              accept="image/*,video/*"
+            />
+          </label>
+          <label htmlFor="image7">
+            {image7 && image7.type.startsWith('video') ? (
+              <video className='w-20' src={URL.createObjectURL(image7)} controls />
+            ) : (
+              <img className='w-20' src={!image7 ? assets.upload_area : URL.createObjectURL(image7)} alt="" />
+            )}
+            <input
+              onChange={(e) => {
+                const file = e.target.files[0];
+                if (file) {
+                  const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'video/mp4', 'video/webm', 'video/ogg', 'video/quicktime'];
+                  const maxSize = 22 * 1024 * 1024; // 20 MB
+                  if (!validTypes.includes(file.type)) {
+                    toast.error('Only images and videos are allowed');
+                    return;
+                  }
+                  if (file.size > maxSize) {
+                    toast.error('File size must be less than or equal to 20 MB');
+                    return;
+                  }
+                  setImage7(file);
+                }
+              }}
+              type="file"
+              id="image7"
+              hidden
+              accept="image/*,video/*"
+            />
+          </label>
+          <label htmlFor="image8">
+            {image8 && image8.type.startsWith('video') ? (
+              <video className='w-20' src={URL.createObjectURL(image8)} controls />
+            ) : (
+              <img className='w-20' src={!image8 ? assets.upload_area : URL.createObjectURL(image8)} alt="" />
+            )}
+            <input
+              onChange={(e) => {
+                const file = e.target.files[0];
+                if (file) {
+                  const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'video/mp4', 'video/webm', 'video/ogg', 'video/quicktime'];
+                  const maxSize = 22 * 1024 * 1024; // 20 MB
+                  if (!validTypes.includes(file.type)) {
+                    toast.error('Only images and videos are allowed');
+                    return;
+                  }
+                  if (file.size > maxSize) {
+                    toast.error('File size must be less than or equal to 20 MB');
+                    return;
+                  }
+                  setImage8(file);
+                }
+              }}
+              type="file"
+              id="image8"
+              hidden
+              accept="image/*,video/*"
+            />
           </label>
         </div>
       </div>
@@ -97,8 +328,8 @@ const Add = ({ token }) => {
 
         <div>
           <p className='mb-2'>Product category</p>
-          <select onChange={(e) => setCategory(e.target.value)} className='w-full px-3 py-2'>
-            <option value="" disabled selected>Select category</option>
+          <select value={category} onChange={(e) => setCategory(e.target.value)} className='w-full px-3 py-2'>
+            <option value="" disabled>Select category</option>
             <option value="Frames">Frames</option>
             <option value="LED">LED</option>
             <option value="Stationery">Stationery</option>
@@ -107,7 +338,6 @@ const Add = ({ token }) => {
             <option value="Clocks">Clocks</option>
             <option value="Thali's">Thali's</option>
             <option value="Pillows">Pillows</option>
-
           </select>
         </div>
 
