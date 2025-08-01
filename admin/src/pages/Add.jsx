@@ -77,10 +77,38 @@ const Add = ({ token }) => {
 
         <div className='flex gap-2'>
           <label htmlFor="image1">
-            {image1 && image1.type.startsWith('video') ? (
-              <video className='w-20' src={URL.createObjectURL(image1)} controls />
+              {image1 && image1.type.startsWith('video') ? (
+              <div className='relative w-32 h-32'>
+                <video className='w-32 h-32 object-cover' src={URL.createObjectURL(image1)} />
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setImage1(false);
+                  }}
+                  className="absolute top-0 right-0 bg-black bg-opacity-50 text-white rounded-full w-5 h-5 flex items-center justify-center cursor-pointer"
+                  aria-label="Remove image1"
+                >
+                  &times;
+                </button>
+              </div>
             ) : (
-              <img className='w-20' src={!image1 ? assets.upload_area : URL.createObjectURL(image1)} alt="" />
+              <div className='relative w-32 h-32'>
+                <img className='w-32 h-32 object-cover' src={!image1 ? assets.upload_area : URL.createObjectURL(image1)} alt="" />
+                {image1 && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setImage1(false);
+                  }}
+                  className="absolute top-0 right-0 bg-black bg-opacity-50 text-white rounded-full w-5 h-5 flex items-center justify-center cursor-pointer"
+                  aria-label="Remove image1"
+                >
+                  &times;
+                </button>
+                )}
+              </div>
             )}
             <input
               onChange={(e) => {
@@ -110,9 +138,37 @@ const Add = ({ token }) => {
           </label>
           <label htmlFor="image2">
             {image2 && image2.type.startsWith('video') ? (
-              <video className='w-20' src={URL.createObjectURL(image2)} controls />
+              <div className='relative w-32 h-32'>
+                <video className='w-32 h-32 object-cover' src={URL.createObjectURL(image2)} />
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setImage2(false);
+                  }}
+                  className="absolute top-0 right-0 bg-black bg-opacity-50 text-white rounded-full w-5 h-5 flex items-center justify-center cursor-pointer"
+                  aria-label="Remove image2"
+                >
+                  &times;
+                </button>
+              </div>
             ) : (
-              <img className='w-20' src={!image2 ? assets.upload_area : URL.createObjectURL(image2)} alt="" />
+              <div className='relative w-32 h-32'>
+                <img className='w-32 h-32 object-cover' src={!image2 ? assets.upload_area : URL.createObjectURL(image2)} alt="" />
+                {image2 && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setImage2(false);
+                  }}
+                  className="absolute top-0 right-0 bg-black bg-opacity-50 text-white rounded-full w-5 h-5 flex items-center justify-center cursor-pointer"
+                  aria-label="Remove image2"
+                >
+                  &times;
+                </button>
+                )}
+              </div>
             )}
             <input
               onChange={(e) => {
@@ -139,9 +195,37 @@ const Add = ({ token }) => {
           </label>
           <label htmlFor="image3">
             {image3 && image3.type.startsWith('video') ? (
-              <video className='w-20' src={URL.createObjectURL(image3)} controls />
+              <div className='relative w-32 h-32'>
+                <video className='w-32 h-32 object-cover' src={URL.createObjectURL(image3)} />
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setImage3(false);
+                  }}
+                  className="absolute top-0 right-0 bg-black bg-opacity-50 text-white rounded-full w-5 h-5 flex items-center justify-center cursor-pointer"
+                  aria-label="Remove image3"
+                >
+                  &times;
+                </button>
+              </div>
             ) : (
-              <img className='w-20' src={!image3 ? assets.upload_area : URL.createObjectURL(image3)} alt="" />
+              <div className='relative w-32 h-32'>
+                <img className='w-32 h-32 object-cover' src={!image3 ? assets.upload_area : URL.createObjectURL(image3)} alt="" />
+                {image3 && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setImage3(false);
+                  }}
+                  className="absolute top-0 right-0 bg-black bg-opacity-50 text-white rounded-full w-5 h-5 flex items-center justify-center cursor-pointer"
+                  aria-label="Remove image3"
+                >
+                  &times;
+                </button>
+                )}
+              </div>
             )}
             <input
               onChange={(e) => {
@@ -168,9 +252,37 @@ const Add = ({ token }) => {
           </label>
           <label htmlFor="image4">
             {image4 && image4.type.startsWith('video') ? (
-              <video className='w-20' src={URL.createObjectURL(image4)} controls />
+              <div className='relative w-32 h-32'>
+                <video className='w-32 h-32 object-cover' src={URL.createObjectURL(image4)} />
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setImage4(false);
+                  }}
+                  className="absolute top-0 right-0 bg-black bg-opacity-50 text-white rounded-full w-5 h-5 flex items-center justify-center cursor-pointer"
+                  aria-label="Remove image4"
+                >
+                  &times;
+                </button>
+              </div>
             ) : (
-              <img className='w-20' src={!image4 ? assets.upload_area : URL.createObjectURL(image4)} alt="" />
+              <div className='relative w-32 h-32'>
+                <img className='w-32 h-32 object-cover' src={!image4 ? assets.upload_area : URL.createObjectURL(image4)} alt="" />
+                {image4 && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setImage4(false);
+                  }}
+                  className="absolute top-0 right-0 bg-black bg-opacity-50 text-white rounded-full w-5 h-5 flex items-center justify-center cursor-pointer"
+                  aria-label="Remove image4"
+                >
+                  &times;
+                </button>
+                )}
+              </div>
             )}
             <input
               onChange={(e) => {
@@ -197,9 +309,37 @@ const Add = ({ token }) => {
           </label>
           <label htmlFor="image5">
             {image5 && image5.type.startsWith('video') ? (
-              <video className='w-20' src={URL.createObjectURL(image5)} controls />
+              <div className='relative w-32 h-32 object-cover'>
+                <video className='w-32 h-32 object-cover' src={URL.createObjectURL(image5)} />
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setImage5(false);
+                  }}
+                  className="absolute top-0 right-0 bg-black bg-opacity-50 text-white rounded-full w-5 h-5 flex items-center justify-center cursor-pointer"
+                  aria-label="Remove image5"
+                >
+                  &times;
+                </button>
+              </div>
             ) : (
-              <img className='w-20' src={!image5 ? assets.upload_area : URL.createObjectURL(image5)} alt="" />
+              <div className='relative w-32 h-32'>
+                <img className='w-32 h-32 object-cover' src={!image5 ? assets.upload_area : URL.createObjectURL(image5)} alt="" />
+                {!image5 ? null : (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setImage5(false);
+                  }}
+                  className="absolute top-0 right-0 bg-black bg-opacity-50 text-white rounded-full w-5 h-5 flex items-center justify-center cursor-pointer"
+                  aria-label="Remove image5"
+                >
+                  &times;
+                </button>
+                )}
+              </div>
             )}
             <input
               onChange={(e) => {
@@ -226,9 +366,37 @@ const Add = ({ token }) => {
           </label>
           <label htmlFor="image6">
             {image6 && image6.type.startsWith('video') ? (
-              <video className='w-20' src={URL.createObjectURL(image6)} controls />
+              <div className='relative w-32 h-32'>
+                <video className='w-32 h-32 object-cover' src={URL.createObjectURL(image6)} />
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setImage6(false);
+                  }}
+                  className="absolute top-0 right-0 bg-black bg-opacity-50 text-white rounded-full w-5 h-5 flex items-center justify-center cursor-pointer"
+                  aria-label="Remove image6"
+                >
+                  &times;
+                </button>
+              </div>
             ) : (
-              <img className='w-20' src={!image6 ? assets.upload_area : URL.createObjectURL(image6)} alt="" />
+              <div className='relative w-32 h-32'>
+                <img className='w-32 h-32 object-cover' src={!image6 ? assets.upload_area : URL.createObjectURL(image6)} alt="" />
+                {image6 && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setImage6(false);
+                  }}
+                  className="absolute top-0 right-0 bg-black bg-opacity-50 text-white rounded-full w-5 h-5 flex items-center justify-center cursor-pointer"
+                  aria-label="Remove image6"
+                >
+                  &times;
+                </button>
+                )}
+              </div>
             )}
             <input
               onChange={(e) => {
@@ -255,9 +423,37 @@ const Add = ({ token }) => {
           </label>
           <label htmlFor="image7">
             {image7 && image7.type.startsWith('video') ? (
-              <video className='w-20' src={URL.createObjectURL(image7)} controls />
+              <div className='relative w-32 h-32'>
+                <video className='w-32 h-32 object-cover' src={URL.createObjectURL(image7)} />
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setImage7(false);
+                  }}
+                  className="absolute top-0 right-0 bg-black bg-opacity-50 text-white rounded-full w-5 h-5 flex items-center justify-center cursor-pointer"
+                  aria-label="Remove image7"
+                >
+                  &times;
+                </button>
+              </div>
             ) : (
-              <img className='w-20' src={!image7 ? assets.upload_area : URL.createObjectURL(image7)} alt="" />
+              <div className='relative w-32 h-32'>
+                <img className='w-32 h-32 object-cover' src={!image7 ? assets.upload_area : URL.createObjectURL(image7)} alt="" />
+                {image7 && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setImage7(false);
+                  }}
+                  className="absolute top-0 right-0 bg-black bg-opacity-50 text-white rounded-full w-5 h-5 flex items-center justify-center cursor-pointer"
+                  aria-label="Remove image7"
+                >
+                  &times;
+                </button>
+                )}
+              </div>
             )}
             <input
               onChange={(e) => {
@@ -284,9 +480,37 @@ const Add = ({ token }) => {
           </label>
           <label htmlFor="image8">
             {image8 && image8.type.startsWith('video') ? (
-              <video className='w-20' src={URL.createObjectURL(image8)} controls />
+              <div className='relative w-32 h-32'>
+                <video className='w-32 h-32 object-cover' src={URL.createObjectURL(image8)} />
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setImage8(false);
+                  }}
+                  className="absolute top-0 right-0 bg-black bg-opacity-50 text-white rounded-full w-5 h-5 flex items-center justify-center cursor-pointer"
+                  aria-label="Remove image8"
+                >
+                  &times;
+                </button>
+              </div>
             ) : (
-              <img className='w-20' src={!image8 ? assets.upload_area : URL.createObjectURL(image8)} alt="" />
+              <div className='relative w-32 h-32'>
+                <img className='w-32 h-32 object-cover' src={!image8 ? assets.upload_area : URL.createObjectURL(image8)} alt="" />
+                {image8 && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setImage8(false);
+                  }}
+                  className="absolute top-0 right-0 bg-black bg-opacity-50 text-white rounded-full w-5 h-5 flex items-center justify-center cursor-pointer"
+                  aria-label="Remove image8"
+                >
+                  &times;
+                </button>
+                )}
+              </div>
             )}
             <input
               onChange={(e) => {
@@ -341,8 +565,6 @@ const Add = ({ token }) => {
           </select>
         </div>
 
-
-
         <div>
           <p className='mb-2'>Product Price</p>
           <input onChange={(e) => setPrice(e.target.value)} value={price} className='w-full px-3 py-2 sm:w-[120px]' type="Number" placeholder='25' />
@@ -356,18 +578,6 @@ const Add = ({ token }) => {
           <div onClick={() => setSizes(prev => prev.includes("customised") ? prev.filter(item => item !== "customised") : [...prev, "customised"])}>
             <p className={`${sizes.includes("customised") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>Customised</p>
           </div>
-
-          {/* <div onClick={() => setSizes(prev => prev.includes("L") ? prev.filter(item => item !== "L") : [...prev, "L"])}>
-            <p className={`${sizes.includes("L") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>L</p>
-          </div>
-
-          <div onClick={() => setSizes(prev => prev.includes("XL") ? prev.filter(item => item !== "XL") : [...prev, "XL"])}>
-            <p className={`${sizes.includes("XL") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>XL</p>
-          </div>
-
-          <div onClick={() => setSizes(prev => prev.includes("XXL") ? prev.filter(item => item !== "XXL") : [...prev, "XXL"])}>
-            <p className={`${sizes.includes("XXL") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer`}>XXL</p>
-          </div> */}
         </div>
       </div>
 
