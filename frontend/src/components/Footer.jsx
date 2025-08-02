@@ -27,7 +27,7 @@ const Footer = () => {
             <p className='text-xl font-medium mb-5'>GET IN TOUCH</p>
             <ul className='flex flex-col gap-1 text-gray-600'>
                 <li>+91 9871834140</li>
-                <li>OnTimeCustomGifts2@gmail.com</li>
+                <li>craftorry@gmail.com</li>
             </ul>
         </div>
 
@@ -35,7 +35,7 @@ const Footer = () => {
 
         <div>
             <hr />
-            <p className='py-5 text-sm text-center'>Copyright 2025@OnTimeGifts.vercel.app - All Right Reserved.</p>
+            <p className='py-5 text-sm text-center'>Copyright 2025@Craftorry.vercel.app - All Right Reserved.</p>
         </div>
 
     </div>
