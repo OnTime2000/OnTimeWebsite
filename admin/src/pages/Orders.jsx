@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { backendUrl, currency } from '../App'
+import { backendUrl } from '../App'
 import { toast } from 'react-toastify'
 import { assets } from '../assets/assets'
 
 const Orders = ({ token }) => {
   const [orders, setOrders] = useState([])
   const [visibleCustomization, setVisibleCustomization] = useState(null)
-  const navigate = useNavigate()
+  const [sortBy, setSortBy] = useState('newest')
+  const [totalOrders, setTotalOrders] = useState(0)
 
   // Fetch all orders
   const fetchAllOrders = async () => {
@@ -20,7 +20,42 @@ const Orders = ({ token }) => {
         { headers: { token } }
       )
       if (response.data.success) {
-        setOrders(response.data.orders.reverse())
+        let sortedOrders = [...response.data.orders]
+        
+        // Add order numbers
+        sortedOrders = sortedOrders.map((order, index) => ({
+          ...order,
+          orderNumber: index + 1
+        }))
+        
+        // Sort based on selected criteria
+        switch(sortBy) {
+          case 'newest':
+            sortedOrders.sort((a, b) => new Date(b.date) - new Date(a.date))
+            break
+          case 'oldest':
+            sortedOrders.sort((a, b) => new Date(a.date) - new Date(b.date))
+            break
+          case 'month':
+            sortedOrders.sort((a, b) => {
+              const dateA = new Date(a.date)
+              const dateB = new Date(b.date)
+              return dateB.getMonth() - dateA.getMonth() || dateB.getFullYear() - dateA.getFullYear()
+            })
+            break
+          case 'year':
+            sortedOrders.sort((a, b) => {
+              const yearA = new Date(a.date).getFullYear()
+              const yearB = new Date(b.date).getFullYear()
+              return yearB - yearA
+            })
+            break
+          default:
+            sortedOrders.sort((a, b) => new Date(b.date) - new Date(a.date))
+        }
+        
+        setOrders(sortedOrders)
+        setTotalOrders(sortedOrders.length)
       } else {
         toast.error(response.data.message || 'Failed to fetch orders')
       }
@@ -73,18 +108,42 @@ const Orders = ({ token }) => {
 
   useEffect(() => {
     fetchAllOrders()
-  }, [token])
+  }, [token, sortBy])
 
   return (
     <>
-      <h3 className="text-lg font-bold mb-4">Orders</h3>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
+        <h3 className="text-lg font-bold">Orders</h3>
+        <div className="flex items-center gap-4">
+          <div className="text-sm font-medium">
+            Total Orders: <span className="text-lg font-bold">{totalOrders}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <label className="text-sm font-medium">Sort by:</label>
+            <select 
+              value={sortBy} 
+              onChange={(e) => setSortBy(e.target.value)}
+              className="border px-3 py-1 rounded-md text-sm"
+            >
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+              <option value="month">By Month</option>
+              <option value="year">By Year</option>
+            </select>
+          </div>
+        </div>
+      </div>
       <div>
         {orders.map((order) => (
           <div
             key={order._id}
             className="grid grid-cols-1 sm:grid-cols-[0.5fr_2fr_1fr] lg:grid-cols-[0.5fr_2fr_1fr_1fr_1fr] gap-3 items-start border-2 border-gray-200 p-5 md:p-8 my-3 md:my-4 text-xs sm:text-sm text-gray-700"
           >
-            <img className="w-12" src={assets.parcel_icon} alt="parcel" />
+            <div className="flex flex-col items-center">
+              <img className="w-12 mb-2" src={assets.parcel_icon} alt="parcel" />
+              <span className="text-xs text-gray-500">Order</span>
+              <span className="text-lg font-bold text-lg">#{order.orderNumber}</span>
+            </div>
 
             {/* Order Details */}
             <div>
