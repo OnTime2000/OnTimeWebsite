@@ -14,7 +14,7 @@ const About = () => {
       <div className='my-10 flex flex-col md:flex-row gap-16'>
           <img className='w-full md:max-w-[450px]' src={assets.about_img} alt="" />
           <div className='flex flex-col justify-center gap-6 md:w-2/4 text-gray-600'>
-              <p>At <b className='text-gray-800'> OnTime</b>, We specialize in creating unique, personalized products that turn ordinary items into meaningful memories. From custom name-engraved pens and photo-printed mugs to beautifully carved wooden pieces, we offer gifts that are thoughtful, personal, and one-of-a-kind.</p>
+              <p>At <b className='text-gray-800'> Craftorry</b>, We specialize in creating unique, personalized products that turn ordinary items into meaningful memories. From custom name-engraved pens and photo-printed mugs to beautifully carved wooden pieces, we offer gifts that are thoughtful, personal, and one-of-a-kind.</p>
           <p>Our team is passionate about quality, creativity, and customer satisfaction. Every item is carefully crafted to reflect your vision and emotion. Whether it’s a gift for a loved one or a keepsake for yourself, we’re here to help you create something truly special.</p>
           <b className='text-gray-800'>Our Mission</b>
           <p>Our mission is to celebrate individuality by transforming your ideas into beautifully customized products that spark joy, preserve memories, and make every gift truly one-of-a-kind. We’re committed to quality, creativity, and customer satisfaction in everything we create.</p>
